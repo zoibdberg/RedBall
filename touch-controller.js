@@ -173,7 +173,7 @@
     renderBall:function(Ball) {
       
       // this.buffer.fillStyle = Ball.color;
-      // this.buffer.fillRect(Ball.x, Ball.y, Ball.width, Ball.height);
+      // this.buffer.fillRect(Ball.x, Ball.y, Ball.radius, Ball.radius);
 
       this.buffer.beginPath(); 
       this.buffer.fillStyle = Ball.color;
@@ -241,7 +241,7 @@
       game.Ball.y += game.Ball.velocity_y;
 
       // collision detection for the Ball and the boundaries of the graphics buffer:
-      if (game.Ball.x + game.Ball.width < 0) {
+      if (game.Ball.x + game.Ball.radius < 0) {
 
         game.Ball.x = display.buffer.canvas.width;
 
@@ -251,9 +251,9 @@
 
       }
 
-      if (game.Ball.y + game.Ball.height > 0) {
+      if (game.Ball.y + game.Ball.radius * 2 + 20> 220) {
 
-        game.Ball.y = 150 - game.Ball.height;
+        game.Ball.y = 220 - game.Ball.radius * 2 - 20;
         game.Ball.jumping = false;
 
       }
@@ -274,11 +274,10 @@
     Ball: {
 
       color:"#ff4040",
-      height:32,
+      radius:32,
       jumping:true,
       velocity_x:0,
       velocity_y:0,
-      width:32,
       x:0,
       y:0,
 
