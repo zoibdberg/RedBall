@@ -155,7 +155,7 @@
 
       var button, index;
 
-      this.buffer.fillStyle = "#202830";
+      this.buffer.fillStyle = "#f02830";
       this.buffer.fillRect(0, 150, this.buffer.canvas.width, this.buffer.canvas.height);
 
       for (index = buttons.length - 1; index > -1; -- index) {
