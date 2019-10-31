@@ -169,11 +169,16 @@
 
     },
 
-    // renders a square:
-    renderSquare:function(square) {
+    // renders a Ball:
+    renderBall:function(Ball) {
+      
+      // this.buffer.fillStyle = Ball.color;
+      // this.buffer.fillRect(Ball.x, Ball.y, Ball.width, Ball.height);
 
-      this.buffer.fillStyle = square.color;
-      this.buffer.fillRect(square.x, square.y, square.width, square.height);
+      this.buffer.beginPath(); 
+      this.buffer.fillStyle = Ball.color;
+      this.buffer.arc(Ball.x, Ball.y, 12, 0, 2 * Math.PI);
+      this.buffer.fill();
 
     },
 
@@ -204,59 +209,59 @@
 
     loop:function(time_stamp) {
 
-      if (controller.buttons[0].active && game.square.jumping == false) {
+      if (controller.buttons[0].active && game.Ball.jumping == false) {
 
-        game.square.velocity_y = -20;
-        game.square.jumping = true;
+        game.Ball.velocity_y = -20;
+        game.Ball.jumping = true;
 
       }
 
       if (controller.buttons[1].active) {
 
-        game.square.velocity_x -= 0.5;
+        game.Ball.velocity_x -= 0.5;
 
       }
 
       if (controller.buttons[2].active) {
 
-        game.square.velocity_x += 0.5;
+        game.Ball.velocity_x += 0.5;
 
       }
 
 
       // simulate gravity:
-      game.square.velocity_y += 1.5;
+      game.Ball.velocity_y += 1.5;
 
       // simulate friction:
-      game.square.velocity_x *= 0.9;
-      game.square.velocity_y *= 0.9;
+      game.Ball.velocity_x *= 0.9;
+      game.Ball.velocity_y *= 0.9;
 
-      // move the square:
-      game.square.x += game.square.velocity_x;
-      game.square.y += game.square.velocity_y;
+      // move the Ball:
+      game.Ball.x += game.Ball.velocity_x;
+      game.Ball.y += game.Ball.velocity_y;
 
-      // collision detection for the square and the boundaries of the graphics buffer:
-      if (game.square.x + game.square.width < 0) {
+      // collision detection for the Ball and the boundaries of the graphics buffer:
+      if (game.Ball.x + game.Ball.width < 0) {
 
-        game.square.x = display.buffer.canvas.width;
+        game.Ball.x = display.buffer.canvas.width;
 
-      } else if (game.square.x > display.buffer.canvas.width) {
+      } else if (game.Ball.x > display.buffer.canvas.width) {
 
-        game.square.x = 0;
+        game.Ball.x = 0;
 
       }
 
-      if (game.square.y + game.square.height > 150) {
+      if (game.Ball.y + game.Ball.height > 150) {
 
-        game.square.y = 150 - game.square.height;
-        game.square.jumping = false;
+        game.Ball.y = 150 - game.Ball.height;
+        game.Ball.jumping = false;
 
       }
 
 
       display.clear("#303840");
 
-      display.renderSquare(game.square);
+      display.renderBall(game.Ball);
 
       display.renderButtons(controller.buttons);
 
@@ -266,7 +271,7 @@
 
     },
 
-    square: {
+    Ball: {
 
       color:"#00ff00",
       height:32,
