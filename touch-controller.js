@@ -190,15 +190,33 @@
 
     },
 
-    renderCrystal:function(crystal){
+    rendercrystal_1:function(crystal_1){
       this.buffer.beginPath();
-      this.buffer.moveTo(crystal.x + 5, crystal.y + 0);
-      this.buffer.lineTo(crystal.x + 0, crystal.y + 10);
-      this.buffer.lineTo(crystal.x + 5, crystal.y + 20);
-      this.buffer.lineTo(crystal.x + 10,crystal.y + 10);
-      this.buffer.fillStyle = crystal.color;
+      this.buffer.moveTo(crystal_1.x + 5, crystal_1.y + 0);
+      this.buffer.lineTo(crystal_1.x + 0, crystal_1.y + 10);
+      this.buffer.lineTo(crystal_1.x + 5, crystal_1.y + 20);
+      this.buffer.lineTo(crystal_1.x + 10,crystal_1.y + 10);
+      this.buffer.fillStyle = crystal_1.color;
       this.buffer.fill();
     },
+    
+    // rendercrystal_2:function(crystal_2){
+    //   this.buffer.beginPath();
+    //   this.buffer.moveTo(crystal_2.x, crystal_2.y);
+    //   this.buffer.linetTo(crystal2.x + 3, crystal_2.y);
+    //   this.buffer.linetTo(crystal2.x + 5, crystal_2.y + 5);
+    //   this.buffer.linetTo(crystal2.x + 7, crystal_2.y);
+    //   this.buffer.linetTo(crystal2.x + 10, crystal_2.y);
+    //   this.buffer.linetTo(crystal2.x + 10, crystal_2.y + 5);
+    //   this.buffer.linetTo(crystal2.x + 5, crystal_2.y + 10);
+    //   this.buffer.linetTo(crystal2.x, crystal_2.y + 5);
+    //   // this.buffer.linetTo(crystal2.x, crystal_2.y);
+
+
+    //   this.buffer.fillStyle = crystal_2.color;
+    //   this.buffer.fill();
+    // },
+
     // just keeps the output canvas element sized appropriately:
     resize:function(event) {
 
@@ -236,7 +254,7 @@
       y:0,
     },
 
-    crystal: {
+    crystal_1: {
       height:25,
       width:25,
       x: 45,
@@ -244,75 +262,90 @@
       color:"#00ff00",
     },
 
+
+    // crystal_2: {
+    //   height:25,
+    //   width:25,
+    //   x: 85,
+    //   y: display.buffer.canvas.height - 25,
+    //   color:"#2020ff",
+    // },
+
+
+
+
     loop:function(time_stamp) {
 
-      if(Math.abs(game.Ball.x - game.crystal.x) < 10 && Math.abs(game.Ball.y - game.crystal.y) < 30){
-        game.crystal.color = '#00000000';
-        controller.counter++;
-        console.log("Hi" + controller.counter);
-      }
 
+      
       if (controller.buttons[0].active && game.Ball.jumping == false) {
-
+        
         game.Ball.velocity_y = -20;
         game.Ball.jumping = true;
 
       }
 
       if (controller.buttons[1].active) {
-
+        
         game.Ball.velocity_x -= 0.5;
-
+        
       }
 
       if (controller.buttons[2].active) {
-
+        
         game.Ball.velocity_x += 0.5;
-
+        
       }
-
-
+      
+      
       // simulate gravity:
       game.Ball.velocity_y += 1.5;
-
+      
       // simulate friction:
       game.Ball.velocity_x *= 0.9;
       game.Ball.velocity_y *= 0.9;
-
+      
       // move the Ball:
       game.Ball.x += game.Ball.velocity_x;
       game.Ball.y += game.Ball.velocity_y;
-
+      
       // collision detection for the Ball and the boundaries of the graphics buffer:
       if (game.Ball.x + game.Ball.radius < 0) {
-
+        
         game.Ball.x = display.buffer.canvas.width;
-
+        
       } else if (game.Ball.x > display.buffer.canvas.width) {
-
+        
         game.Ball.x = 0;
 
       }
-
+      
       if (game.Ball.y + game.Ball.radius * 2 + 20> 220) {
-
+        
         game.Ball.y = 220 - game.Ball.radius * 2 - 20;
         game.Ball.jumping = false;
-
+        
       }
+      
 
 
       display.clear("#303840");
 
       display.renderBall(game.Ball);
 
-      display.renderCrystal(game.crystal);
+      display.rendercrystal_1(game.crystal_1);
+      // display.rendercrystal_2(game.crystal_2);
 
       display.renderButtons(controller.buttons);
 
       display.render();
 
       window.requestAnimationFrame(game.loop);
+      if(Math.abs(game.Ball.x - game.crystal_1.x) < 10 && Math.abs(game.Ball.y - game.crystal_1.y) < 30){
+        game.crystal_1.color = '#00000000';
+        controller.counter++;
+        console.log("Hi" + controller.counter);
+      }
 
     },
   };
