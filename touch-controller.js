@@ -247,7 +247,7 @@
     loop:function(time_stamp) {
 
       if(Math.abs(game.Ball.x - game.crystal.x) < 10 && Math.abs(game.Ball.y - game.crystal.y) < 30){
-        game.crystal.color = '#ffffff';
+        game.crystal.color = '#00000000';
         controller.counter++;
         console.log("Hi" + controller.counter);
       }
