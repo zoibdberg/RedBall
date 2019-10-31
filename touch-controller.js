@@ -268,7 +268,7 @@
 
     square: {
 
-      color:"#ff0000",
+      color:"#00ff00",
       height:32,
       jumping:true,
       velocity_x:0,
