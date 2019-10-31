@@ -251,7 +251,7 @@
 
       }
 
-      if (game.Ball.y + game.Ball.height > 150) {
+      if (game.Ball.y + game.Ball.height > 0) {
 
         game.Ball.y = 150 - game.Ball.height;
         game.Ball.jumping = false;
