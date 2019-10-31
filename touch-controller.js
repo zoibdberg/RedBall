@@ -34,6 +34,8 @@
 
   };
 
+
+
   // handles everything to do with user input:
   controller = {
 
@@ -44,6 +46,11 @@
       new Button(260, 160, 60, 60, "#0090f0")
 
     ],
+
+    score:function(){
+      var counter
+      
+    },
 
     testButtons:function(target_touches) {
 
@@ -120,9 +127,10 @@
 
   };
 
+
+
   // handles everything to do with displaying graphics on the screen:
   display = {
-
     // the buffer is used to scale the applications graphics to fit the screen:
     buffer:document.createElement("canvas").getContext("2d"),
     // the on screen canvas context that we will be drawing to:
@@ -182,6 +190,15 @@
 
     },
 
+    renderCrystal:function(crystal){
+      this.buffer.beginPath();
+      this.buffer.moveTo(crystal.x + 5, crystal.y + 0);
+      this.buffer.lineTo(crystal.x + 0, crystal.y + 10);
+      this.buffer.lineTo(crystal.x + 5, crystal.y + 20);
+      this.buffer.lineTo(crystal.x + 10,crystal.y + 10);
+      this.buffer.fillStyle = crystal.color;
+      this.buffer.fill();
+    },
     // just keeps the output canvas element sized appropriately:
     resize:function(event) {
 
@@ -204,10 +221,36 @@
 
   };
 
+
+
   // handles game logic:
   game = {
 
+    Ball: {
+      color:"#ff4040",
+      radius:32,
+      jumping:true,
+      velocity_x:0,
+      velocity_y:0,
+      x:0,
+      y:0,
+    },
+
+    crystal: {
+      height:25,
+      width:25,
+      x: 45,
+      y: display.buffer.canvas.height - 25,
+      color:"#00ff00",
+    },
+
     loop:function(time_stamp) {
+
+      if(Math.abs(game.Ball.x - game.crystal.x) < 10 && Math.abs(game.Ball.y - game.crystal.y) < 30){
+        game.crystal.color = '#00000000';
+        controller.counter++;
+        console.log("Hi" + controller.counter);
+      }
 
       if (controller.buttons[0].active && game.Ball.jumping == false) {
 
@@ -263,6 +306,8 @@
 
       display.renderBall(game.Ball);
 
+      display.renderCrystal(game.crystal);
+
       display.renderButtons(controller.buttons);
 
       display.render();
@@ -270,24 +315,9 @@
       window.requestAnimationFrame(game.loop);
 
     },
-
-    Ball: {
-
-      color:"#ff4040",
-      radius:32,
-      jumping:true,
-      velocity_x:0,
-      velocity_y:0,
-      x:0,
-      y:0,
-
-    }
-
   };
 
-  // initialize the application
 
-  // size the buffer:
   display.buffer.canvas.height = 220;
   display.buffer.canvas.width = 320;
 
