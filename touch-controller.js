@@ -273,7 +273,7 @@
 
     Ball: {
 
-      color:"#00ff00",
+      color:"ff4040",
       height:32,
       jumping:true,
       velocity_x:0,
