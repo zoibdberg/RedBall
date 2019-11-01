@@ -76,7 +76,7 @@
       }
 
       // this is all just for displaying the messages when buttons are pressed. This isn't necessary code.
-      display.message.innerHTML = "Score: " + counter + "<br>- ";
+      display.message.innerHTML = "Score: " + counter + "<br>";
 
     },
 
