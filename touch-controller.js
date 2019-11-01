@@ -3,6 +3,7 @@
 (function() {
 
   var Button, controller, display, game;
+  var counter = 0;
 
   // basically a rectangle, but it's purpose here is to be a button:
   Button = function(x, y, width, height, color) {
@@ -47,11 +48,6 @@
 
     ],
 
-    score:function(){
-      var counter
-      
-    },
-
     testButtons:function(target_touches) {
 
       var button, index0, index1, touch;
@@ -80,7 +76,7 @@
       }
 
       // this is all just for displaying the messages when buttons are pressed. This isn't necessary code.
-      display.message.innerHTML = "touches: " + event.targetTouches.length + "<br>- ";
+      display.message.innerHTML = "Score: " + counter + "<br>- ";
 
       if (this.buttons[0].active) {
 
@@ -200,22 +196,23 @@
       this.buffer.fill();
     },
     
-    // rendercrystal_2:function(crystal_2){
-    //   this.buffer.beginPath();
-    //   this.buffer.moveTo(crystal_2.x, crystal_2.y);
-    //   this.buffer.linetTo(crystal2.x + 3, crystal_2.y);
-    //   this.buffer.linetTo(crystal2.x + 5, crystal_2.y + 5);
-    //   this.buffer.linetTo(crystal2.x + 7, crystal_2.y);
-    //   this.buffer.linetTo(crystal2.x + 10, crystal_2.y);
-    //   this.buffer.linetTo(crystal2.x + 10, crystal_2.y + 5);
-    //   this.buffer.linetTo(crystal2.x + 5, crystal_2.y + 10);
-    //   this.buffer.linetTo(crystal2.x, crystal_2.y + 5);
-    //   // this.buffer.linetTo(crystal2.x, crystal_2.y);
+
+    rendercrystal_2:function(crystal_2){
+      this.buffer.beginPath();
+      this.buffer.moveTo(crystal_2.x,      crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 3,  crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 5,  crystal_2.y + 5);
+      this.buffer.lineTo(crystal_2.x + 7,  crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 10, crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 10, crystal_2.y + 5);
+      this.buffer.lineTo(crystal_2.x + 5,  crystal_2.y + 10);
+      this.buffer.lineTo(crystal_2.x,      crystal_2.y + 5);
+      // this.buffer.linetTo(crystal2.x, crystal_2.y);
 
 
-    //   this.buffer.fillStyle = crystal_2.color;
-    //   this.buffer.fill();
-    // },
+      this.buffer.fillStyle = crystal_2.color;
+      this.buffer.fill();
+    },
 
     // just keeps the output canvas element sized appropriately:
     resize:function(event) {
@@ -260,16 +257,18 @@
       x: 45,
       y: display.buffer.canvas.height - 25,
       color:"#00ff00",
+      collected: false,
     },
 
 
-    // crystal_2: {
-    //   height:25,
-    //   width:25,
-    //   x: 85,
-    //   y: display.buffer.canvas.height - 25,
-    //   color:"#2020ff",
-    // },
+    crystal_2: {
+      height:25,
+      width:25,
+      x: 85,
+      y: display.buffer.canvas.height - 25,
+      color:"#ff5555",
+      collected: false,
+    },
 
 
 
@@ -334,7 +333,7 @@
       display.renderBall(game.Ball);
 
       display.rendercrystal_1(game.crystal_1);
-      // display.rendercrystal_2(game.crystal_2);
+      display.rendercrystal_2(game.crystal_2);
 
       display.renderButtons(controller.buttons);
 
@@ -342,9 +341,19 @@
 
       window.requestAnimationFrame(game.loop);
       if(Math.abs(game.Ball.x - game.crystal_1.x) < 10 && Math.abs(game.Ball.y - game.crystal_1.y) < 30){
-        game.crystal_1.color = '#00000000';
-        controller.counter++;
-        console.log("Hi" + controller.counter);
+        if(!game.crystal_1.collected){
+          game.crystal_1.color = '#00000000';
+          counter++;
+          game.crystal_1.collected = true;
+        }
+      }
+
+      if(Math.abs(game.Ball.x - game.crystal_2.x) < 10 && Math.abs(game.Ball.y - game.crystal_2.y) < 30){
+        if(!game.crystal_2.collected){
+          game.crystal_2.color = '#00000000';
+          counter += 5;
+          game.crystal_2.collected = true;
+        } 
       }
 
     },
