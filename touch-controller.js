@@ -328,11 +328,11 @@
 
       display.clear("#303840");
 
-      display.renderBall(game.Ball);
-
+      
       display.rendercrystal_1(game.crystal_1);
       display.rendercrystal_2(game.crystal_2);
-
+      display.renderBall(game.Ball);
+      
       display.renderButtons(controller.buttons);
 
       display.render();
@@ -340,7 +340,7 @@
       window.requestAnimationFrame(game.loop);
       if(Math.abs(game.Ball.x - game.crystal_1.x) < 10 && Math.abs(game.Ball.y - game.crystal_1.y) < 30){
         if(!game.crystal_1.collected){
-          game.crystal_1.color = '#00000000';
+          game.crystal_1.color = '#303840';
           counter++;
           game.crystal_1.collected = true;
         }
@@ -348,7 +348,7 @@
 
       if(Math.abs(game.Ball.x - game.crystal_2.x) < 10 && Math.abs(game.Ball.y - game.crystal_2.y) < 30){
         if(!game.crystal_2.collected){
-          game.crystal_2.color = '#00000000';
+          game.crystal_2.color = '#303840';
           counter += 5;
           game.crystal_2.collected = true;
         } 
