@@ -200,15 +200,13 @@
     rendercrystal_2:function(crystal_2){
       this.buffer.beginPath();
       this.buffer.moveTo(crystal_2.x,      crystal_2.y);
-      this.buffer.lineTo(crystal_2.x + 3,  crystal_2.y);
-      this.buffer.lineTo(crystal_2.x + 5,  crystal_2.y + 5);
-      this.buffer.lineTo(crystal_2.x + 7,  crystal_2.y);
-      this.buffer.lineTo(crystal_2.x + 10, crystal_2.y);
-      this.buffer.lineTo(crystal_2.x + 10, crystal_2.y + 5);
-      this.buffer.lineTo(crystal_2.x + 5,  crystal_2.y + 10);
-      this.buffer.lineTo(crystal_2.x,      crystal_2.y + 5);
-      // this.buffer.linetTo(crystal2.x, crystal_2.y);
-
+      this.buffer.lineTo(crystal_2.x + 6,  crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 10,  crystal_2.y + 10);
+      this.buffer.lineTo(crystal_2.x + 14,  crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 20, crystal_2.y);
+      this.buffer.lineTo(crystal_2.x + 20, crystal_2.y + 10);
+      this.buffer.lineTo(crystal_2.x + 10,  crystal_2.y + 20);
+      this.buffer.lineTo(crystal_2.x,      crystal_2.y + 10);
 
       this.buffer.fillStyle = crystal_2.color;
       this.buffer.fill();
