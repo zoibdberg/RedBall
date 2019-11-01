@@ -78,26 +78,6 @@
       // this is all just for displaying the messages when buttons are pressed. This isn't necessary code.
       display.message.innerHTML = "Score: " + counter + "<br>- ";
 
-      if (this.buttons[0].active) {
-
-        display.message.innerHTML += "jump ";
-
-      }
-
-      if (this.buttons[1].active) {
-
-        display.message.innerHTML += "left ";
-
-      }
-
-      if (this.buttons[2].active) {
-
-        display.message.innerHTML += "right ";
-
-      }
-
-      display.message.innerHTML += "-";
-
     },
 
     touchEnd:function(event) {
