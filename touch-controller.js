@@ -220,7 +220,7 @@
   game = {
 
     Ball: {
-      color:"#ff4040",
+      color:"#ff4444",
       radius:32,
       jumping:true,
       velocity_x:0,
