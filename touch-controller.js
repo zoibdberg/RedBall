@@ -234,7 +234,7 @@
       width:25,
       x: 45,
       y: display.buffer.canvas.height - 25,
-      color:"#00ff00",
+      color:"#00af00",
       collected: false,
     },
 
