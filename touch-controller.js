@@ -276,7 +276,7 @@
       
       
       // simulate gravity:
-      game.Ball.velocity_y += 1.5;
+      game.Ball.velocity_y += 3.5;
       
       // simulate friction:
       game.Ball.velocity_x *= 0.9;
